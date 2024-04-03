@@ -229,10 +229,10 @@
 		    SCH_Init();
 
 		    /* Adding tasks to the scheduler */
-		    SCH_Add_Task(task_LED_Blink, 0, 10000); // LED blink every 1 second
-		    SCH_Add_Task(task_Double_Dots, 0, 5000); // Double Dots blink every 0.5 second
-		    SCH_Add_Task(task_Update_Time, 10000, 10000); // Time update every 1 second
-		    SCH_Add_Task(task_Update_7SEG, 0, 2500); // 7-segment update every 250ms
+		    SCH_Add_Task(task_LED_Blink, 0, 100); // LED blink every 1 second
+		    SCH_Add_Task(task_Double_Dots, 0, 50); // Double Dots blink every 0.5 second
+		    SCH_Add_Task(task_Update_Time, 100, 100); // Time update every 1 second
+		    SCH_Add_Task(task_Update_7SEG, 0, 25); // 7-segment update every 250ms
 
 		    /* Optional tasks */
 		    // SCH_Add_Task(task_Update_LED_Matrix, 0, 250); // LED Matrix update every 250ms
@@ -242,12 +242,11 @@
 		    while (1)
 		    {
 		        SCH_Dispatch_Tasks(); // Run due tasks
-		        SCH_Update(); // Update task counters and flags
 		    }
 		}
 
 	void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-		timerRun();
+		 SCH_Update(); // Update task counters and flags
 	}
 
 	/**
